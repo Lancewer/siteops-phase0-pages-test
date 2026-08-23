@@ -1,0 +1,31 @@
+tasks_schema_version: 1
+change_id: chg_20260823_e2e_closed_loop_01
+
+tasks:
+  - id: T001
+    title: 创建 e2e 验证页面
+    objective: 在 public/e2e/index.html 创建一个简单静态页面，正文包含标记文本 siteops-e2e-ok
+    status: pending
+    depends_on: []
+    in_scope:
+      - public/e2e/index.html
+    out_of_scope:
+      - 修改现有首页及其他任何文件
+    allowed_write_paths:
+      - public/e2e/**
+    forbidden_write_paths:
+      - .env*
+      - secrets/**
+      - siteops/changes/**
+    required_outputs:
+      - public/e2e/index.html
+    verification:
+      - type: file_exists
+        path: public/e2e/index.html
+    relevant_files: []
+    constraints:
+      - 不引入新依赖
+      - 纯静态 HTML，不使用框架
+    limits:
+      max_agent_turns: 10
+      max_tokens: 100000

@@ -1,0 +1,58 @@
+# site-profile.yaml — Phase 0 测试站点
+site_schema_version: 1
+
+identity:
+  site_id: siteops-phase0-pages-test
+  site_ref: site://siteops-phase0-pages-test
+  display_name: SiteOps Phase0 Pages Test
+  primary_url: https://siteops-phase0-pages-test.pages.dev
+
+repository:
+  provider: github
+  url: github.com/Lancewer/siteops-phase0-pages-test
+  production_branch: main
+  change_branch_pattern: sdd/{change_id}
+
+build:
+  framework: none                 # 纯静态，public/ 直接作为输出
+  package_manager: npm
+  output_dir: public
+
+cloudflare_pages:
+  project_name: siteops-phase0-pages-test
+  project_ref: cf-pages://siteops-phase0-pages-test
+  production_branch: main
+  preview_branch_pattern: sdd/*
+  preview_url_strategy: branch_alias_then_api
+  access_protected: false         # Phase 0 测试项目当前未开 Access
+  require_noindex: true
+
+runner:
+  preferred_runner: local-windows-dev
+  allowed_runners:
+    - local-windows-dev
+  workspace_root: D:\siteops-phase0
+
+verification:
+  pre_commit:
+    - unauthorized_diff_check
+  local_build: []
+  pages_build:
+    - deployment_status_success
+  preview:
+    - route_status_200
+    - noindex_present
+  manual:
+    - visual_review
+
+limits:
+  max_changed_files: 30
+  max_diff_lines: 5000
+  max_runtime_minutes: 60
+  max_agent_turns: 30
+  max_tokens: 500000
+  max_log_size_mb: 100
+
+credentials:
+  git: secret://git/siteops-phase0-pages-test
+  cloudflare_pages: secret://cloudflare/pages/siteops-phase0-pages-test

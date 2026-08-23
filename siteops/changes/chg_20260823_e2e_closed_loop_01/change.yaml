@@ -1,0 +1,111 @@
+change_schema_version: 1
+meta:
+  change_id: chg_20260823_e2e_closed_loop_01
+  title: E2E 闭环验证：新增 /e2e/ 页面
+  status: ready_for_execution
+  site_ref: site://siteops-phase0-pages-test
+  created_by: human
+  created_at: '2026-08-23T04:24:23Z'
+  updated_at: '2026-08-23T04:24:23Z'
+source:
+  kind: manual
+  ref: null
+  untrusted: false
+intent:
+  summary: 在 public/e2e/ 下新增一个静态页面，验证 Change → 执行 → Preview 的完整闭环
+  success_criteria:
+  - Preview 上 /e2e/ 返回 200
+  - Preview 响应头包含 x-robots-tag: noindex
+scope:
+  allowed_write_paths:
+  - public/**
+  forbidden_write_paths:
+  - .env*
+  - secrets/**
+  - siteops/changes/**
+  allowed_route_prefixes:
+  - /e2e/
+workflow_policy:
+  risk:
+    level: low
+    factors: []
+  route:
+    selected: quick
+    reason: 单页面新增，验证性质
+  required_capabilities:
+  - execution_contract
+  - checkpoint
+  - verification
+  framework:
+    requested: plainspec
+    selected: plainspec
+    version: '0.1'
+  approvals:
+    execution:
+      required: true
+      includes:
+      - intent
+      - spec
+      - plan
+      - tasks
+      - contract
+    release:
+      required: true
+artifacts:
+  intent:
+    path: intent.md
+    mutable_until: execution_approved
+  context:
+    path: context.md
+    mutable_until: execution_approved
+  keyword_pack:
+    path: keyword-pack.json
+    mutable_until: execution_approved
+  spec:
+    path: spec.md
+    mutable_until: execution_approved
+  plan:
+    path: plan.md
+    mutable_until: execution_approved
+  tasks:
+    path: tasks.yaml
+    mutable_until: execution_approved
+  contract:
+    path: contract.md
+    mutable_until: execution_approved
+  verification:
+    path: verification.yaml
+    mutable_until: release_approved
+  lock:
+    path: change.lock.yaml
+    mutable_until: never
+acceptance:
+  pre_commit:
+  - id: unauthorized_diff_check
+    type: git_diff_policy
+    required: true
+  local_build: []
+  pages_build:
+  - id: pages_deployment_success
+    type: pages_deployment_status
+    expect: success
+    required: true
+  preview:
+  - id: e2e_route_200
+    type: http_status
+    target: preview
+    paths:
+    - /e2e/
+    expect: 200
+    required: true
+  - id: preview_noindex
+    type: http_header
+    target: preview
+    path: /e2e/
+    header: x-robots-tag
+    contains: noindex
+    required: true
+  manual:
+  - id: visual_review
+    title: 目视检查页面
+    required: true

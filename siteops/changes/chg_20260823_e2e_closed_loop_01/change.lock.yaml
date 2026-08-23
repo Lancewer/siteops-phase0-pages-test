@@ -1,0 +1,85 @@
+lock_schema_version: 1
+change_id: chg_20260823_e2e_closed_loop_01
+hash_algorithm: sha256
+canonicalization: utf8-nobom-lf
+artifacts:
+  intent:
+    sha256: e5b6eaafeb1d90483a5c1374d33c64c758d6287407a4f749b9e8a3013082491b
+    locked_at: '2026-08-23T04:25:16Z'
+  context:
+    sha256: 66439bc0ce5c4bc5027899cbaf6399063404fecf68fef0e95ccec1570cb124fb
+    locked_at: '2026-08-23T04:25:16Z'
+  keyword_pack:
+    sha256: ''
+    locked_at: null
+  spec:
+    sha256: b76e740df33f9fc9840475f2664c93e4a39586ad890abd7b1dba180dc0fedb20
+    locked_at: '2026-08-23T04:25:16Z'
+  plan:
+    sha256: 35f8d41916715e1aef8b0da8908160eb0c2e47922aec3cb829ea26055950bb4b
+    locked_at: '2026-08-23T04:25:16Z'
+  tasks:
+    sha256: 8d4e6abcc66db47f4d21fad72ae278a8211b82feafd340a96556a8d6a31f6865
+    locked_at: '2026-08-23T04:25:16Z'
+  contract:
+    sha256: 2424c9a0ed30fcfd0775ae89c73db01f004c938b9c902e1bcff022c09640d934
+    locked_at: '2026-08-23T04:25:16Z'
+  verification:
+    sha256: ''
+    locked_at: null
+dependency_graph:
+  spec:
+  - intent
+  - context
+  - keyword_pack
+  plan:
+  - spec
+  tasks:
+  - plan
+  contract:
+  - tasks
+  - spec
+  verification:
+  - contract
+approvals:
+  execution:
+    status: approved
+    approved_by: lance
+    approved_at: '2026-08-23T04:25:17Z'
+    approved_hashes:
+      intent: e5b6eaafeb1d90483a5c1374d33c64c758d6287407a4f749b9e8a3013082491b
+      context: 66439bc0ce5c4bc5027899cbaf6399063404fecf68fef0e95ccec1570cb124fb
+      spec: b76e740df33f9fc9840475f2664c93e4a39586ad890abd7b1dba180dc0fedb20
+      plan: 35f8d41916715e1aef8b0da8908160eb0c2e47922aec3cb829ea26055950bb4b
+      tasks: 8d4e6abcc66db47f4d21fad72ae278a8211b82feafd340a96556a8d6a31f6865
+      contract: 2424c9a0ed30fcfd0775ae89c73db01f004c938b9c902e1bcff022c09640d934
+  release:
+    status: pending
+    approved_by: null
+    approved_at: null
+    approved_hashes: {}
+environment_pins:
+  agent_adapter: kimi-code
+  framework: plainspec
+  framework_version: '0.1'
+history:
+- event: lock_created
+  at: '2026-08-23T04:25:16Z'
+  by: siteops-cli
+  artifacts:
+  - context
+  - contract
+  - intent
+  - plan
+  - spec
+  - tasks
+- event: execution_approved
+  at: '2026-08-23T04:25:17Z'
+  by: lance
+  artifact_hashes:
+  - context
+  - contract
+  - intent
+  - plan
+  - spec
+  - tasks
