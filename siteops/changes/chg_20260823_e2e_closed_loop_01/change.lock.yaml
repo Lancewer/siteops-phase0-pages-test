@@ -99,3 +99,6 @@ history:
   - plan
   - spec
   - tasks
+- event: archived
+  at: '2026-08-23T05:06:02Z'
+  by: lance
