@@ -1,0 +1,55 @@
+receipt_schema_version: 1
+run:
+  run_id: run_20260823_043213_01
+  change_id: chg_20260823_e2e_closed_loop_01
+  task_id: T001
+  attempt: 1
+  status: succeeded
+lease:
+  runner_id: local-runner
+  fencing_token: 1
+  acquired_at: '2026-08-23T04:32:13Z'
+  released_at: '2026-08-23T04:32:13Z'
+agent:
+  adapter: kimi-code
+  adapter_version: 0.38.0
+  mode: print
+  session_ref: session_a392a1a0-b960-4708-a923-08084431caeb
+  exit_code: 0
+effects:
+  git_commit:
+    status: not_performed
+    ref: null
+  git_push:
+    status: not_performed
+    ref: null
+  pages_deployment:
+    status: pending
+    branch_alias_url: null
+    atomic_url: null
+    deployment_id: null
+verification:
+  pre_commit:
+  - type: file_exists
+    path: public/e2e/index.html
+    result: pass
+    detail: ''
+  local_build: []
+  pages_build: []
+  preview: []
+diff_summary:
+  changed_files: 1
+  diff_lines: 12
+  unauthorized_changes: []
+  secret_scan: clean
+usage:
+  agent_turns: 2
+  tokens: 0
+  runtime_seconds: 22.078
+evidence:
+  log_ref: null
+  redacted: true
+notes: "任务完成。\n\n## 总结\n\n- **修改内容**：新建 `public/e2e/index.html`，一个纯静态 HTML 页面（无框架、无外部依赖），正文包含标记文本\
+  \ `siteops-e2e-ok`。\n- **产物路径**：`public/e2e/index.html`（已验证存在且内容正确）。\n- **未执行的操作**：\n\
+  \  - 未修改现有首页 `public/index.html` 及其他任何文件。\n  - 未读取或写入任何凭证文件（`.env`、`secrets/` 等）。\n\
+  \  - 未执行任何 Shell 命令（本任务无需命令，文件通过写文件工具直接创建）。"

@@ -1,0 +1,48 @@
+receipt_schema_version: 1
+run:
+  run_id: run_20260823_044302_02
+  change_id: chg_20260823_e2e_closed_loop_01
+  task_id: null
+  attempt: 2
+  status: succeeded
+lease:
+  runner_id: local-runner
+  fencing_token: 2
+  acquired_at: '2026-08-23T04:43:02Z'
+  released_at: '2026-08-23T04:43:02Z'
+agent:
+  adapter: '-'
+  adapter_version: null
+  mode: null
+  session_ref: null
+  exit_code: null
+effects:
+  git_commit:
+    status: skipped
+    ref: null
+  git_push:
+    status: succeeded
+    ref: sdd/chg_20260823_e2e_closed_loop_01
+  pages_deployment:
+    status: success
+    branch_alias_url: https://sdd-chg-20260823-e2e-closed.siteops-phase0-pages-test.pages.dev
+    atomic_url: https://0a10a9a2.siteops-phase0-pages-test.pages.dev
+    deployment_id: 0a10a9a2-f2bb-45c7-a33f-d872e1497ccd
+verification:
+  pre_commit: []
+  local_build: []
+  pages_build: []
+  preview: []
+diff_summary:
+  changed_files: 0
+  diff_lines: 0
+  unauthorized_changes: []
+  secret_scan: not_run
+usage:
+  agent_turns: 0
+  tokens: 0
+  runtime_seconds: 0
+evidence:
+  log_ref: null
+  redacted: true
+notes: ''
