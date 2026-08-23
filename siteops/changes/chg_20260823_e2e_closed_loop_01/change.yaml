@@ -2,11 +2,11 @@ change_schema_version: 1
 meta:
   change_id: chg_20260823_e2e_closed_loop_01
   title: E2E 闭环验证：新增 /e2e/ 页面
-  status: ready_for_execution
+  status: preview_ready
   site_ref: site://siteops-phase0-pages-test
   created_by: human
   created_at: '2026-08-23T04:24:23Z'
-  updated_at: '2026-08-23T04:24:23Z'
+  updated_at: '2026-08-23T04:43:02Z'
 source:
   kind: manual
   ref: null

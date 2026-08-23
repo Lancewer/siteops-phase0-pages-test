@@ -1,0 +1,49 @@
+receipt_schema_version: 1
+run:
+  run_id: run_20260823_043234_01
+  change_id: chg_20260823_e2e_closed_loop_01
+  task_id: null
+  attempt: 1
+  status: failed_publish
+lease:
+  runner_id: local-runner
+  fencing_token: 1
+  acquired_at: '2026-08-23T04:32:34Z'
+  released_at: '2026-08-23T04:32:34Z'
+agent:
+  adapter: '-'
+  adapter_version: null
+  mode: null
+  session_ref: null
+  exit_code: null
+effects:
+  git_commit:
+    status: succeeded
+    ref: 5e822c42565714da291e3739eb6c82565cc49a85
+  git_push:
+    status: failed
+    ref: sdd/chg_20260823_e2e_closed_loop_01
+  pages_deployment:
+    status: pending
+    branch_alias_url: null
+    atomic_url: null
+    deployment_id: null
+verification:
+  pre_commit: []
+  local_build: []
+  pages_build: []
+  preview: []
+diff_summary:
+  changed_files: 0
+  diff_lines: 0
+  unauthorized_changes: []
+  secret_scan: not_run
+usage:
+  agent_turns: 0
+  tokens: 0
+  runtime_seconds: 0
+evidence:
+  log_ref: null
+  redacted: true
+notes: '推送失败: fatal: unable to access ''https://github.com/Lancewer/siteops-phase0-pages-test.git/'':
+  Failed to connect to github.com port 443 after 21056 ms: Could not connect to server'
