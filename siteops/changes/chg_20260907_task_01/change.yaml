@@ -1,0 +1,68 @@
+# change.yaml — 网页新建的 draft Change（协议 v0.2），由控制台生成；daemon 负责起草完整 Packet
+change_schema_version: 2
+
+meta:
+  change_id: chg_20260907_task_01
+  title: '新建计算器页面'
+  status: draft
+  site_ref: site://siteops-phase0-pages-test
+  created_by: web:lancewer@qq.com
+  created_at: "2026-09-07T14:36:34Z"
+  updated_at: "2026-09-07T14:36:34Z"
+
+source:
+  kind: growth
+  ref: null
+  untrusted: false
+
+intent:
+  summary: '新建一个极简的计算器页面'
+  success_criteria: []
+
+scope:
+  allowed_write_paths:
+    - 'public/**'
+  forbidden_write_paths:
+    - '.env*'
+    - 'secrets/**'
+    - 'siteops/changes/**'
+  allowed_route_prefixes: []
+
+workflow_policy:
+  risk:
+    level: medium
+    factors: []
+  route:
+    selected: full
+    reason: 网页新建的 draft，默认完整流程，待 daemon 起草后人工审阅
+  required_capabilities:
+    - execution_contract
+    - checkpoint
+    - verification
+  framework:
+    requested: plainspec
+    selected: plainspec
+    version: "0.1"
+  approvals:
+    execution:
+      required: true
+      includes: [intent, spec, plan, tasks, contract]
+    release:
+      required: true
+
+artifacts:
+  intent:       { path: intent.md,         mutable_until: execution_approved }
+  context:      { path: context.md,        mutable_until: execution_approved }
+  spec:         { path: spec.md,           mutable_until: execution_approved }
+  plan:         { path: plan.md,           mutable_until: execution_approved }
+  tasks:        { path: tasks.yaml,        mutable_until: execution_approved }
+  contract:     { path: contract.md,       mutable_until: execution_approved }
+  verification: { path: verification.yaml, mutable_until: release_approved }
+  lock:         { path: change.lock.yaml,  mutable_until: never }
+
+acceptance:
+  pre_commit: []
+  local_build: []
+  pages_build: []
+  preview: []
+  manual: []
