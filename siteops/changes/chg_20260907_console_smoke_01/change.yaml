@@ -1,0 +1,83 @@
+change_schema_version: 2
+meta:
+  change_id: chg_20260907_console_smoke_01
+  title: 控制台联通冒烟
+  status: draft
+  site_ref: site://siteops-phase0-pages-test
+  created_by: human
+  created_at: '2026-09-07T02:23:36Z'
+  updated_at: '2026-09-07T02:23:36Z'
+source:
+  kind: growth
+  ref: null
+  untrusted: false
+intent:
+  summary: 验证 Phase 2 控制台真实联通：列表/详情渲染与 Gate 1 审批写回。
+  success_criteria:
+  - 控制台详情页正常渲染本 Change
+  - 控制台批准 Gate 1 后 lock 文件被改写且 CLI 可解析
+scope:
+  allowed_write_paths:
+  - public/**
+  forbidden_write_paths:
+  - .env*
+  - secrets/**
+  - siteops/changes/**
+  allowed_route_prefixes: []
+workflow_policy:
+  risk:
+    level: medium
+    factors: []
+  route:
+    selected: full
+    reason: 控制台联通冒烟测试，走完整双 Gate 流程
+  required_capabilities:
+  - execution_contract
+  - checkpoint
+  - verification
+  framework:
+    requested: plainspec
+    selected: plainspec
+    version: '0.1'
+  approvals:
+    execution:
+      required: true
+      includes:
+      - intent
+      - spec
+      - plan
+      - tasks
+      - contract
+    release:
+      required: true
+artifacts:
+  intent:
+    path: intent.md
+    mutable_until: execution_approved
+  context:
+    path: context.md
+    mutable_until: execution_approved
+  spec:
+    path: spec.md
+    mutable_until: execution_approved
+  plan:
+    path: plan.md
+    mutable_until: execution_approved
+  tasks:
+    path: tasks.yaml
+    mutable_until: execution_approved
+  contract:
+    path: contract.md
+    mutable_until: execution_approved
+  verification:
+    path: verification.yaml
+    mutable_until: release_approved
+  lock:
+    path: change.lock.yaml
+    mutable_until: never
+acceptance:
+  pre_commit: []
+  local_build: []
+  pages_build: []
+  preview: []
+  manual: []

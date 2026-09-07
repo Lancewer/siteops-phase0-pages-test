@@ -1,0 +1,79 @@
+lock_schema_version: 2
+change_id: chg_20260907_console_smoke_01
+hash_algorithm: sha256
+canonicalization: utf8-nobom-lf
+artifacts:
+  intent:
+    sha256: e5b6eaafeb1d90483a5c1374d33c64c758d6287407a4f749b9e8a3013082491b
+    locked_at: '2026-09-07T02:24:59Z'
+  context:
+    sha256: 66439bc0ce5c4bc5027899cbaf6399063404fecf68fef0e95ccec1570cb124fb
+    locked_at: '2026-09-07T02:24:59Z'
+  spec:
+    sha256: b76e740df33f9fc9840475f2664c93e4a39586ad890abd7b1dba180dc0fedb20
+    locked_at: '2026-09-07T02:24:59Z'
+  plan:
+    sha256: 35f8d41916715e1aef8b0da8908160eb0c2e47922aec3cb829ea26055950bb4b
+    locked_at: '2026-09-07T02:24:59Z'
+  tasks:
+    sha256: e60f79ec9322948c72a04e7c71be5ae74e02c3177aca1cc73cb950d62ed3e365
+    locked_at: '2026-09-07T02:24:59Z'
+  contract:
+    sha256: 2424c9a0ed30fcfd0775ae89c73db01f004c938b9c902e1bcff022c09640d934
+    locked_at: '2026-09-07T02:24:59Z'
+  verification:
+    sha256: ''
+    locked_at: null
+dependency_graph:
+  spec:
+  - intent
+  - context
+  plan:
+  - spec
+  tasks:
+  - plan
+  contract:
+  - tasks
+  - spec
+  verification:
+  - contract
+approvals:
+  execution:
+    status: pending
+    approved_by: null
+    approved_at: null
+    approved_hashes: {}
+  release:
+    status: pending
+    approved_by: null
+    approved_at: null
+    approved_hashes: {}
+environment_pins:
+  node: null
+  package_manager: null
+  agent_adapter: kimi-code
+  agent_adapter_version: null
+  framework: plainspec
+  framework_version: '0.1'
+history:
+- event: lock_created
+  at: '2026-09-07T02:23:36Z'
+  by: siteops-cli
+  artifacts:
+  - context
+  - contract
+  - intent
+  - plan
+  - spec
+  - tasks
+- event: relocked
+  at: '2026-09-07T02:24:59Z'
+  by: siteops-cli
+  artifacts:
+  - context
+  - contract
+  - intent
+  - plan
+  - spec
+  - tasks
+  note: hash 已刷新，既有审批若绑定旧 hash 将失效，需重新批准
