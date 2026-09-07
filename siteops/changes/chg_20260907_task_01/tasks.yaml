@@ -1,0 +1,40 @@
+tasks_schema_version: 2
+change_id: chg_20260907_task_01
+tasks:
+  - id: T001
+    title: 新建极简计算器页面 public/index.html
+    objective: >-
+      交付单文件、零依赖的静态计算器页面：内联 CSS 网格布局，原生 JS 实现
+      四则运算、连续运算、除零报错与清空复位，满足 spec.md 全部验收用例。
+    status: pending
+    depends_on: []
+    allowed_write_paths:
+      - 'public/index.html'
+    in_scope:
+      - 创建 public/index.html（HTML 结构 + 内联 CSS + 内联 JS）
+      - 如 public/ 目录不存在则创建之
+    out_of_scope:
+      - 科学计算/百分比/括号/历史记录等进阶功能
+      - 引入任何第三方库、CDN 或外部资源
+      - 修改站点现有任何文件
+    forbidden_write_paths:
+      - '.env*'
+      - 'secrets/**'
+      - 'siteops/changes/**'
+    required_outputs:
+      - path: public/index.html
+        checks:
+          - file_exists
+          - frontmatter_valid: false
+    verification:
+      - file_exists: public/index.html
+      - contains: ['<!DOCTYPE html>', 'viewport', 'id="display"']
+      - no_external_refs: true
+      - manual_cases: [AC1, AC2, AC3, AC4, AC5, AC6, AC7, AC8, AC9]
+    constraints:
+      - 单文件交付，无构建步骤
+      - 无 http(s) 外部资源引用
+      - 结果精度：最多 10 位有效小数，去除尾随 0
+    limits:
+      max_files: 1
+      max_diff_lines: 300

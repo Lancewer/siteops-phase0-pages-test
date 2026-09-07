@@ -1,0 +1,49 @@
+receipt_schema_version: 2
+run:
+  run_id: run_20260907_234201_01
+  change_id: chg_20260907_task_01
+  task_id: drafting
+  task_hash: null
+  attempt: 1
+  status: succeeded
+lease:
+  runner_id: local-runner
+  fencing_token: 1
+  acquired_at: '2026-09-07T23:42:01Z'
+  released_at: '2026-09-07T23:42:01Z'
+agent:
+  adapter: kimi-code
+  adapter_version: null
+  mode: null
+  session_ref: null
+  exit_code: null
+effects:
+  git_commit:
+    status: not_performed
+    ref: null
+  git_push:
+    status: not_performed
+    ref: null
+  pages_deployment:
+    status: pending
+    branch_alias_url: null
+    atomic_url: null
+    deployment_id: null
+verification:
+  pre_commit: []
+  local_build: []
+  pages_build: []
+  preview: []
+diff_summary:
+  changed_files: 0
+  diff_lines: 0
+  unauthorized_changes: []
+  secret_scan: not_run
+usage:
+  agent_turns: 0
+  tokens: 0
+  runtime_seconds: 0
+evidence:
+  log_ref: null
+  redacted: false
+notes: 起草完成：1 个任务
