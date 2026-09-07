@@ -50,10 +50,16 @@ approvals:
       tasks: e60f79ec9322948c72a04e7c71be5ae74e02c3177aca1cc73cb950d62ed3e365
       contract: 2424c9a0ed30fcfd0775ae89c73db01f004c938b9c902e1bcff022c09640d934
   release:
-    status: pending
-    approved_by: null
-    approved_at: null
-    approved_hashes: {}
+    status: rejected
+    approved_by: lancewer@qq.com
+    approved_at: '2026-09-07T02:26:28Z'
+    approved_hashes:
+      intent: e5b6eaafeb1d90483a5c1374d33c64c758d6287407a4f749b9e8a3013082491b
+      context: 66439bc0ce5c4bc5027899cbaf6399063404fecf68fef0e95ccec1570cb124fb
+      spec: b76e740df33f9fc9840475f2664c93e4a39586ad890abd7b1dba180dc0fedb20
+      plan: 35f8d41916715e1aef8b0da8908160eb0c2e47922aec3cb829ea26055950bb4b
+      tasks: e60f79ec9322948c72a04e7c71be5ae74e02c3177aca1cc73cb950d62ed3e365
+      contract: 2424c9a0ed30fcfd0775ae89c73db01f004c938b9c902e1bcff022c09640d934
 environment_pins:
   node: null
   package_manager: null
