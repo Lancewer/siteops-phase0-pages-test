@@ -39,10 +39,16 @@ dependency_graph:
   - contract
 approvals:
   execution:
-    status: pending
-    approved_by: null
-    approved_at: null
-    approved_hashes: {}
+    status: approved
+    approved_by: lancewer@qq.com
+    approved_at: '2026-09-08T00:19:14Z'
+    approved_hashes:
+      intent: f458b267979010d0eb0ddc106480b72605af3eea76862dffad294b743cd004ab
+      context: 8e1c3d40ca859677f5ca75a90a48ff27eb7b1889ff8814c65862027899ba1342
+      spec: 79917bf8a86398829c7f5a3d61e6054842d7425808e4613585c2460d75bde3ea
+      plan: d12334901df169d851982a6b77458cbc120f03c08371b9ebb15b56a3c775c9c7
+      tasks: ca174d05bc9c6cc93873cb40414a9feb266aaa59063b88ebe1095d206ac3dcae
+      contract: d8add7de879dc7bb32372044bdf64260454db83051c77c1fb5a681582b82772b
   release:
     status: pending
     approved_by: null
