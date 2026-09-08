@@ -1,0 +1,49 @@
+receipt_schema_version: 2
+run:
+  run_id: run_20260908_051451_02
+  change_id: chg_20260907_task_01
+  task_id: null
+  task_hash: null
+  attempt: 2
+  status: succeeded
+lease:
+  runner_id: local-runner
+  fencing_token: 2
+  acquired_at: '2026-09-08T05:14:51Z'
+  released_at: '2026-09-08T05:14:51Z'
+agent:
+  adapter: '-'
+  adapter_version: null
+  mode: null
+  session_ref: null
+  exit_code: null
+effects:
+  git_commit:
+    status: succeeded
+    ref: 90afe7b078e69eaf3160c9579d07747bff2cb01f
+  git_push:
+    status: succeeded
+    ref: sdd/chg_20260907_task_01
+  pages_deployment:
+    status: success
+    branch_alias_url: https://sdd-chg-20260907-task-01.siteops-phase0-pages-test.pages.dev
+    atomic_url: https://cd391d0b.siteops-phase0-pages-test.pages.dev
+    deployment_id: cd391d0b-f8c1-482f-94d0-3076871e5c47
+verification:
+  pre_commit: []
+  local_build: []
+  pages_build: []
+  preview: []
+diff_summary:
+  changed_files: 0
+  diff_lines: 0
+  unauthorized_changes: []
+  secret_scan: not_run
+usage:
+  agent_turns: 0
+  tokens: 0
+  runtime_seconds: 0
+evidence:
+  log_ref: null
+  redacted: false
+notes: site-profile.yaml 缺失或未配置 local_build_command，构建跳过

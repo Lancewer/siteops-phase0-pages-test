@@ -1,0 +1,49 @@
+receipt_schema_version: 2
+run:
+  run_id: run_20260908_032638_01
+  change_id: chg_20260907_task_01
+  task_id: null
+  task_hash: null
+  attempt: 1
+  status: failed_publish
+lease:
+  runner_id: local-runner
+  fencing_token: 1
+  acquired_at: '2026-09-08T03:26:38Z'
+  released_at: '2026-09-08T03:26:38Z'
+agent:
+  adapter: '-'
+  adapter_version: null
+  mode: null
+  session_ref: null
+  exit_code: null
+effects:
+  git_commit:
+    status: skipped
+    ref: null
+  git_push:
+    status: skipped
+    ref: null
+  pages_deployment:
+    status: pending
+    branch_alias_url: null
+    atomic_url: null
+    deployment_id: null
+verification:
+  pre_commit: []
+  local_build: []
+  pages_build: []
+  preview: []
+diff_summary:
+  changed_files: 0
+  diff_lines: 0
+  unauthorized_changes: []
+  secret_scan: not_run
+usage:
+  agent_turns: 0
+  tokens: 0
+  runtime_seconds: 0
+evidence:
+  log_ref: null
+  redacted: false
+notes: 'site-profile.yaml 版本不支持: 1'
