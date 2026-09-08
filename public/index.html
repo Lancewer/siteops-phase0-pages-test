@@ -1,1 +1,195 @@
-﻿<h1>Build Failure Test</h1>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>极简计算器</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f2f3f5;
+    font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+  }
+  .calculator {
+    width: 300px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    padding: 16px;
+  }
+  .display {
+    width: 100%;
+    height: 64px;
+    border: none;
+    border-radius: 8px;
+    background: #1f2329;
+    color: #ffffff;
+    font-size: 2rem;
+    text-align: right;
+    padding: 0 12px;
+    margin-bottom: 12px;
+    overflow: hidden;
+  }
+  .keys {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+  .keys button {
+    height: 52px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.25rem;
+    background: #e8eaee;
+    color: #1f2329;
+    cursor: pointer;
+  }
+  .keys button:active { background: #d4d7dd; }
+  .keys .op { background: #dbe7ff; color: #1d5bd8; }
+  .keys .op:active { background: #c3d6fd; }
+  .keys .clear { background: #ffe2e2; color: #d03030; }
+  .keys .clear:active { background: #fdcaca; }
+  .keys .equals { background: #1d5bd8; color: #ffffff; }
+  .keys .equals:active { background: #1a4fc0; }
+</style>
+</head>
+<body>
+  <div class="calculator">
+    <input id="display" class="display" type="text" value="0" readonly aria-label="显示区">
+    <div class="keys">
+      <button type="button" class="clear" data-action="clear">C</button>
+      <button type="button" data-action="digit" data-value="7">7</button>
+      <button type="button" data-action="digit" data-value="8">8</button>
+      <button type="button" data-action="digit" data-value="9">9</button>
+      <button type="button" class="op" data-action="op" data-value="/">÷</button>
+      <button type="button" data-action="digit" data-value="4">4</button>
+      <button type="button" data-action="digit" data-value="5">5</button>
+      <button type="button" data-action="digit" data-value="6">6</button>
+      <button type="button" class="op" data-action="op" data-value="*">×</button>
+      <button type="button" data-action="digit" data-value="1">1</button>
+      <button type="button" data-action="digit" data-value="2">2</button>
+      <button type="button" data-action="digit" data-value="3">3</button>
+      <button type="button" class="op" data-action="op" data-value="-">−</button>
+      <button type="button" data-action="digit" data-value="0">0</button>
+      <button type="button" data-action="digit" data-value=".">.</button>
+      <button type="button" class="equals" data-action="equals">=</button>
+      <button type="button" class="op" data-action="op" data-value="+">+</button>
+    </div>
+  </div>
+<script>
+(function () {
+  var display = document.getElementById('display');
+  var state = {
+    current: '0',   // 当前输入段
+    acc: null,      // 已结算的累计值
+    op: null,       // 待应用的运算符
+    fresh: true     // 下一次输入是否开始新数字段
+  };
+
+  function render() { display.value = state.current; }
+
+  function reset() {
+    state.current = '0';
+    state.acc = null;
+    state.op = null;
+    state.fresh = true;
+  }
+
+  // 最多 10 位有效小数，去除尾随 0
+  function format(num) {
+    if (!isFinite(num)) return 'Error';
+    var rounded = Math.round(num * 1e10) / 1e10;
+    var s = String(rounded);
+    if (s.indexOf('.') !== -1) {
+      s = s.replace(/0+$/, '').replace(/\.$/, '');
+    }
+    return s;
+  }
+
+  function compute(a, b, op) {
+    switch (op) {
+      case '+': return a + b;
+      case '-': return a - b;
+      case '*': return a * b;
+      case '/': return b === 0 ? NaN : a / b;
+    }
+  }
+
+  function settle() {
+    if (state.op === null || state.acc === null) return true;
+    var result = compute(state.acc, parseFloat(state.current), state.op);
+    var s = format(result);
+    if (s === 'Error') {
+      state.current = 'Error';
+      state.acc = null;
+      state.op = null;
+      state.fresh = true;
+      return false;
+    }
+    state.current = s;
+    state.acc = parseFloat(s);
+    state.op = null;
+    return true;
+  }
+
+  function inputDigit(d) {
+    if (state.current === 'Error' || state.fresh) {
+      state.current = (d === '.') ? '0.' : d;
+      state.fresh = false;
+      return;
+    }
+    if (d === '.') {
+      if (state.current.indexOf('.') !== -1) return; // 同一段只允许一个小数点
+      state.current += '.';
+    } else {
+      if (state.current === '0') state.current = d;
+      else state.current += d;
+    }
+  }
+
+  function inputOp(op) {
+    if (state.current === 'Error') return;
+    if (state.op !== null && state.fresh) {
+      // 连续按运算符：替换运算符
+      state.op = op;
+      return;
+    }
+    if (!settle()) return; // 除零等错误
+    state.acc = parseFloat(state.current);
+    state.op = op;
+    state.fresh = true;
+  }
+
+  function inputEquals() {
+    if (state.current === 'Error') return;
+    settle();
+    state.acc = null;
+    state.fresh = true;
+  }
+
+  document.querySelector('.keys').addEventListener('click', function (e) {
+    var btn = e.target.closest('button');
+    if (!btn) return;
+    var action = btn.getAttribute('data-action');
+    if (action === 'digit') inputDigit(btn.getAttribute('data-value'));
+    else if (action === 'op') inputOp(btn.getAttribute('data-value'));
+    else if (action === 'equals') inputEquals();
+    else if (action === 'clear') reset();
+    render();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    var key = e.key;
+    if (/^[0-9]$/.test(key) || key === '.') { inputDigit(key); render(); }
+    else if (key === '+' || key === '-' || key === '*' || key === '/') { inputOp(key); render(); }
+    else if (key === 'Enter' || key === '=') { e.preventDefault(); inputEquals(); render(); }
+    else if (key === 'Escape') { reset(); render(); }
+  });
+})();
+</script>
+</body>
+</html>
