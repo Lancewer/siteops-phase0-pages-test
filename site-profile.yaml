@@ -1,5 +1,5 @@
 # site-profile.yaml — Phase 0 测试站点
-site_schema_version: 1
+site_schema_version: 2
 
 identity:
   site_id: siteops-phase0-pages-test
@@ -52,6 +52,10 @@ limits:
   max_agent_turns: 30
   max_tokens: 500000
   max_log_size_mb: 100
+
+notifications:
+  enabled: false
+  channels: []
 
 credentials:
   git: secret://git/siteops-phase0-pages-test
