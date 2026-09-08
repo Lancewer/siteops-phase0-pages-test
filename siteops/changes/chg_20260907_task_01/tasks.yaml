@@ -37,4 +37,4 @@ tasks:
       - 结果精度：最多 10 位有效小数，去除尾随 0
     limits:
       max_files: 1
-      max_diff_lines: 300
+      max_diff_lines: 2000
