@@ -1,0 +1,53 @@
+receipt_schema_version: 2
+run:
+  run_id: run_20260909_073745_02
+  change_id: chg_20260907_task_01
+  task_id: health-check
+  task_hash: null
+  attempt: 2
+  status: succeeded
+lease:
+  runner_id: local-runner
+  fencing_token: 2
+  acquired_at: '2026-09-09T07:37:45Z'
+  released_at: '2026-09-09T07:37:45Z'
+agent:
+  adapter: '-'
+  adapter_version: null
+  mode: null
+  session_ref: null
+  exit_code: null
+effects:
+  git_commit:
+    status: not_performed
+    ref: null
+  git_push:
+    status: not_performed
+    ref: null
+  pages_deployment:
+    status: pending
+    branch_alias_url: null
+    atomic_url: null
+    deployment_id: null
+verification:
+  pre_commit:
+  - type: http_status
+    path: prod_root_200
+    result: pass
+    detail: ''
+  local_build: []
+  pages_build: []
+  preview: []
+diff_summary:
+  changed_files: 0
+  diff_lines: 0
+  unauthorized_changes: []
+  secret_scan: not_run
+usage:
+  agent_turns: 0
+  tokens: 0
+  runtime_seconds: 0
+evidence:
+  log_ref: null
+  redacted: false
+notes: 生产健康检查 passed（https://siteops-phase0-pages-test.pages.dev）

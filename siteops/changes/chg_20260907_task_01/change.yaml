@@ -2,11 +2,11 @@ change_schema_version: 2
 meta:
   change_id: chg_20260907_task_01
   title: 新建计算器页面
-  status: live
+  status: monitoring
   site_ref: site://siteops-phase0-pages-test
   created_by: web:lancewer@qq.com
   created_at: '2026-09-07T14:36:34Z'
-  updated_at: '2026-09-08T07:37:28Z'
+  updated_at: '2026-09-09T07:37:45Z'
 source:
   kind: growth
   ref: null
