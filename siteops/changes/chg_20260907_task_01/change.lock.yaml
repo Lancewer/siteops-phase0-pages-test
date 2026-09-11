@@ -89,3 +89,6 @@ history:
   - spec
   - tasks
   note: hash 已刷新，既有审批若绑定旧 hash 将失效，需重新批准
+- event: archived
+  at: '2026-09-11T07:38:38Z'
+  by: runner:local-runner
